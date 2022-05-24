@@ -11,7 +11,8 @@ STATUS = [
 ]
 
 class Carusel(models.Model):
-    title = models.CharField(max_length=200, blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    desc = models.CharField(max_length=200, blank=True, null=True)
     cover_image = models.ImageField(
         upload_to='carousel',
         null=True,
@@ -81,6 +82,10 @@ class Blog(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     author = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
     title = models.CharField(max_length=300)
+    slug = models.SlugField(
+        max_length=200, 
+        default="",
+    )
     content  = models.TextField() 
     image = models.ImageField(
         upload_to='blog',
@@ -111,6 +116,8 @@ class Comment(models.Model):
         choices=STATUS,
         max_length=15
     )
+    createt_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     class Meta:
         verbose_name_plural='Comments'
 
