@@ -132,6 +132,15 @@
                     </div>
                     {% endfor %}
                 </div>
+                     <div class="mb-5">
+                        <h3 class="mb-4 section-title">Tag Cloud</h3>
+                        <div class="d-flex flex-wrap m-n1">
+                            {% for order_item in blog.tag.all %}
+                            <a href="" class="btn btn-outline-secondary m-1">{{order_item.title}}</a>
+
+                               {% endfor %}
+                        </div>
+                    </div>
                 <div class="mb-5">
                     <img src="{%static 'img/blog-2.jpg' %}" alt="" class="img-fluid rounded">
                 </div>

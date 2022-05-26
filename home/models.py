@@ -75,11 +75,19 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+class Tag(models.Model):
+    title=models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name_plural='tag'
 
+    def __str__(self):
+        return self.title
+    
 
 class Blog(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tag)
     author = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
     title = models.CharField(max_length=300)
     slug = models.SlugField(
